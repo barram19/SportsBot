@@ -3,7 +3,7 @@
 
 # Set API endpoint URL and API key
 
-url = 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey=8f283a0b9aa2f6e2b517c77b786bb1cb&bookmakers=fanduel&markets=h2h,spreads&oddsFormat=american'
+url = 'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey=8f283a0b9aa2f6e2b517c77b786bb1cb&bookmakers=fanduel&markets=h2h,spreads,totals&oddsFormat=american'
 api_key = '8f283a0b9aa2f6e2b517c77b786bb1cb'
 
 
