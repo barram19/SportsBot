@@ -1,4 +1,5 @@
 import argparse
+import requests
 from datetime import datetime, timedelta
 import time
 from colorama import Fore, Style
@@ -9,16 +10,42 @@ from src.Utils.Dictionaries import team_index_current
 from src.Utils.tools import create_todays_games_from_odds, get_json_data, to_data_frame, get_todays_games_json, create_todays_games
 from src.DataProviders.SbrOddsProvider import SbrOddsProvider
 
+todays_games_url=
 
-todays_games_url = 'https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2022/scores/00_todays_scores.json'
-data_url = 'https://stats.nba.com/stats/leaguedashteamstats?' \
-           'Conference=&DateFrom=&DateTo=&Division=&GameScope=&' \
-           'GameSegment=&LastNGames=0&LeagueID=00&Location=&' \
-           'MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&' \
-           'PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&' \
-           'PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&' \
-           'Season=2022-23&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&' \
-           'StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision='
+# Replace <YOUR_API_KEY> with your actual API key
+api_key = "8f283a0b9aa2f6e2b517c77b786bb1cb"
+
+# Set the URL for the endpoint that returns odds data for MLB games
+url = "https://api.the-odds-api.com/v4/sports/baseball_mlb/odds"
+
+# Set the query parameters for the request
+params = {
+    "apiKey": 8f283a0b9aa2f6e2b517c77b786bb1cb,
+    "sport": "baseball_mlb",
+    "region": "us",
+    "mkt": "h2h",
+}
+
+# Make a GET request to the endpoint and retrieve the response
+response = requests.get(url, params=params)
+
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Print the response content in JSON format
+    print(response.json())
+else:
+    # Print an error message
+    print(f"Error {response.status_code}: {response.text}")
+           
+#todays_games_url = 'https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=today.json'
+#data_url = 'https://stats.nba.com/stats/leaguedashteamstats?' \
+ #          'Conference=&DateFrom=&DateTo=&Division=&GameScope=&' \
+  #         'GameSegment=&LastNGames=0&LeagueID=00&Location=&' \
+   #        'MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&' \
+    #       'PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&' \
+     #      'PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&' \
+      #     'Season=2022-23&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&' \
+       #    'StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision='
 
 
 def createTodaysGames(games, df, odds):
