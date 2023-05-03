@@ -17,4 +17,4 @@ headers = {
 response = requests.get(url, params=parameters, headers=headers)
 data = response.json()
 print(data[0]) # Access the first element of the list
-nfl_odds = (data[0])
+mlb_odds = (data[0])
